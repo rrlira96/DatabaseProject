@@ -8,16 +8,17 @@ import java.util.Date;
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OrderId")
     private int orderId;
 
     @OneToOne
     @JoinColumn(name = "CustomerId")
-    private Customer customerId;
+    private Customer customer;
 
     @OneToOne
     @JoinColumn(name = "EmployeeId")
-    private Employee employeeId;
+    private Employee employee;
 
     @Column(name = "OrderDate")
     private Date orderDate;
@@ -60,20 +61,20 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Employee getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Date getOrderDate() {

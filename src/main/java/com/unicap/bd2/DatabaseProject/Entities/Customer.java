@@ -1,5 +1,7 @@
 package com.unicap.bd2.DatabaseProject.Entities;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Customer {
     @Column(name = "CustomerId")
     private String customerId;
 
+    @NonNull
     @Column(name = "CompanyName")
     private String companyName;
 

@@ -23,4 +23,8 @@ public class OrderService {
         Optional<Order> order = orderRepository.findById(id);
         return order.orElseThrow(() -> new ResourceNotFoundException(id)); //todo
     }
+
+    public Order createOrder(Order order) {
+        return orderRepository.save(order);
+    }
 }
