@@ -1,5 +1,6 @@
 package com.unicap.bd2.DatabaseProject.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
@@ -57,6 +58,7 @@ public class Employee {
     @Column(name = "Extension")
     private String extension;
 
+    @JsonIgnore
     @Column(name = "Photo")
     private String photo;
 

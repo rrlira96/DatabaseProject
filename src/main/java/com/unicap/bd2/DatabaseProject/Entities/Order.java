@@ -1,23 +1,24 @@
 package com.unicap.bd2.DatabaseProject.Entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "Orders")
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "OrderId")
+    @Column(name = "OrderID")
     private int orderId;
 
     @OneToOne
-    @JoinColumn(name = "CustomerId")
+    @JoinColumn(name = "CustomerID")
     private Customer customer;
 
     @OneToOne
-    @JoinColumn(name = "EmployeeId")
+    @JoinColumn(name = "EmployeeID")
     private Employee employee;
 
     @Column(name = "OrderDate")

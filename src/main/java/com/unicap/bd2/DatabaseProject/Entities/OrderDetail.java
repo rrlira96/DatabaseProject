@@ -1,25 +1,27 @@
 package com.unicap.bd2.DatabaseProject.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Order Details")
+@Table(name = "[Order Details]")
 public class OrderDetail implements Serializable {
 
-    @Id
-    @OneToOne
-    @JoinColumn(name = "OrderId")
-    private Order order;
+    @EmbeddedId
+    @JsonIgnore
+    private OrderDetailPK orderDetailPK;
 
-    @Id
-    @OneToMany
-    @JoinColumn(name = "ProductId")
-    private List<Product> products;
+    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Product product;
+
+    @JoinColumn(name = "OrderID", referencedColumnName = "OrderID", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Order order;
 
     @NonNull
     @Column(name = "UnitPrice")
@@ -33,6 +35,21 @@ public class OrderDetail implements Serializable {
     @Column(name = "Discount")
     private double discount;
 
+    public OrderDetailPK getOrderDetailPK() {
+        return orderDetailPK;
+    }
+
+    public void setOrderDetailPK(OrderDetailPK orderDetailPK) {
+        this.orderDetailPK = orderDetailPK;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public Order getOrder() {
         return order;
@@ -40,14 +57,6 @@ public class OrderDetail implements Serializable {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public double getUnitPrice() {
@@ -79,11 +88,11 @@ public class OrderDetail implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetail that = (OrderDetail) o;
-        return Double.compare(that.unitPrice, unitPrice) == 0 && quantity == that.quantity && Double.compare(that.discount, discount) == 0 && order.equals(that.order) && products.equals(that.products);
+        return orderDetailPK.equals(that.orderDetailPK);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(order, products, unitPrice, quantity, discount);
+        return Objects.hash(orderDetailPK);
     }
 }
