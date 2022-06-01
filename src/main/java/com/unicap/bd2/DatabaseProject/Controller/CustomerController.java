@@ -29,14 +29,13 @@ public class CustomerController {
             return ResponseEntity.ok().body(customer);
         } else {
             return ResponseEntity.badRequest().build();
-            // throw new UserAlredyExistsException("Error: Email alredy exist");
         }
     }
 
     @PostMapping
     public ResponseEntity<Customer> addCustomer(@RequestBody Customer customerBody) {
         Optional<Customer> customer = Optional.ofNullable(customerService.createCustomer(customerBody));
-        return customer.isPresent() ? ResponseEntity.ok().body(customer.get()) : ResponseEntity.badRequest().build();    // todo: throw new UserAlredyExistsException("Error: Email alredy exist");
+        return customer.isPresent() ? ResponseEntity.ok().body(customer.get()) : ResponseEntity.badRequest().build();
     }
 
     @DeleteMapping("/{id}")
@@ -47,7 +46,7 @@ public class CustomerController {
     @PutMapping("/{id}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable String id, @RequestBody Customer customerBody) {
         Optional<Customer> customer = Optional.ofNullable(customerService.updateCustomer(id, customerBody));
-        return customer.isPresent() ? ResponseEntity.ok().body(customer.get()) : ResponseEntity.notFound().build();    // todo: throw new UserAlredyExistsException("Error: Email alredy exist");
+        return customer.isPresent() ? ResponseEntity.ok().body(customer.get()) : ResponseEntity.notFound().build();
     }
 
 }

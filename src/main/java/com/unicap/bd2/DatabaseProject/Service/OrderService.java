@@ -21,7 +21,7 @@ public class OrderService {
 
     public Order getOrderById(int id) {
         Optional<Order> order = orderRepository.findById(id);
-        return order.orElseThrow(() -> new ResourceNotFoundException(id)); //todo
+        return order.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Order createOrder(Order order) {

@@ -21,7 +21,7 @@ public class CustomerService {
 
     public Customer getCustomerById(String id) {
         Optional<Customer> customer =  customerRepository.findById(id);
-        return customer.orElseThrow(() -> new ResourceNotFoundException(id)); //todo
+        return customer.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
 
@@ -29,7 +29,6 @@ public class CustomerService {
         if(!customerRepository.existsById(customer.getCustomerId())) {
            return customerRepository.save(customer);
         }
-        System.out.println("Customer already exists"); // todo exp
         return null;
     }
 

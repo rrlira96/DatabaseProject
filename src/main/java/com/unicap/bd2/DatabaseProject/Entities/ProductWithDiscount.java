@@ -5,6 +5,9 @@ public class ProductWithDiscount {
     private int productId;
     private double discount;
 
+    public ProductWithDiscount() {
+    }
+
     public ProductWithDiscount(int productId, double discount) {
         this.productId = productId;
         this.discount = discount;

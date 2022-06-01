@@ -1,11 +1,8 @@
 package com.unicap.bd2.DatabaseProject.Controller;
 
 
-import com.unicap.bd2.DatabaseProject.Entities.Order;
 import com.unicap.bd2.DatabaseProject.Entities.OrderDetail;
-import com.unicap.bd2.DatabaseProject.Entities.OrderDetailPK;
 import com.unicap.bd2.DatabaseProject.Service.OrderDetailService;
-import com.unicap.bd2.DatabaseProject.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +31,7 @@ public class OrderDetailController {
     @PostMapping
     public ResponseEntity<OrderDetail> addOrderDetail(@RequestBody OrderDetail obj) {
         Optional<OrderDetail> orderDetail = Optional.ofNullable(orderDetailService.createOrderDetail(obj));
-        return orderDetail.isPresent() ? ResponseEntity.ok().body(orderDetail.get()) : ResponseEntity.badRequest().build();    // todo: throw new UserAlredyExistsException("Error: Email alredy exist");
+        return orderDetail.isPresent() ? ResponseEntity.ok().body(orderDetail.get()) : ResponseEntity.badRequest().build();
     }
 
 }

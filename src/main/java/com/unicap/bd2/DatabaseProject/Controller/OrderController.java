@@ -31,7 +31,7 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<Order> addOrder(@RequestBody Order obj) {
         Optional<Order> order = Optional.ofNullable(orderService.createOrder(obj));
-        return order.isPresent() ? ResponseEntity.ok().body(order.get()) : ResponseEntity.badRequest().build();    // todo: throw new UserAlredyExistsException("Error: Email alredy exist");
+        return order.isPresent() ? ResponseEntity.ok().body(order.get()) : ResponseEntity.badRequest().build();
     }
 
 }

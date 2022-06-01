@@ -23,7 +23,7 @@ public class OrderDetailService {
     public OrderDetail getOrderDetailById(int orderId, int productId) {
         OrderDetailPK orderDetailPK = new OrderDetailPK(orderId, productId);
         Optional<OrderDetail> order = orderDetailRepository.findById(orderDetailPK);
-        return order.orElseThrow(() -> new ResourceNotFoundException(orderDetailPK)); //todo
+        return order.orElseThrow(() -> new ResourceNotFoundException(orderDetailPK));
     }
 
     public OrderDetail createOrderDetail(OrderDetail orderDetail) {
